@@ -27,38 +27,7 @@ class App extends Witty_Base
 
 		spl_autoload_register(array($this, 'autoload'));
 
-		$prefix = 'Controller_';
-
-		$route = Witty::instance('Route');
-		$cntl_actn = $route->parse();
-		$request = Witty::instance('Request');
-
-		if (Profiler::$enabled)
-		{
-			$benchmark = Profiler::start('Requests', $request->uri);
-		}
-		
-		$class = new ReflectionClass($prefix.$cntl_actn['controller']);
-
-		if ($class->isAbstract())
-		{
-			throw new Noah_Exception('can\'t init abstract controller: {controller}', array('{controller}' => $prefix.$cntl_actn['controller']));
-		}
-
-		$controller = $class->newInstance();
-		if ($class->hasMethod('before'))
-			$class->getMethod('before')->invoke($controller);
-
-		if ($class->hasMethod('action_'.$cntl_actn['action']))
-			$class->getMethod('action_'.$cntl_actn['action'])->invoke($controller);
-
-		if ($class->hasMethod('after'))
-			$class->getMethod('after')->invoke($controller);
-		
-		if (isset($benchmark))
-		{
-			Profiler::stop($benchmark);
-		}
+		Witty::factory('Request')->execute();
 
 		$started = TRUE;
 
