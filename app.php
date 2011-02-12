@@ -27,7 +27,7 @@ class App extends Witty_Base
 
 		spl_autoload_register(array($this, 'autoload'));
 
-		Witty::factory('Request')->execute();
+		Witty::instance('Request')->execute();
 
 		$started = TRUE;
 

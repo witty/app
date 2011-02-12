@@ -1,9 +1,8 @@
 <?php
-class Controller_Default 
+class Controller_Default extends Controller_Base
 {
 	public function action_index()
 	{
-		$response = Witty::instance('Response');
-		$response->body = 'hello default';
+		$this->response->body = 'hello default';
 	}
 }
