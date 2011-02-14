@@ -6,7 +6,7 @@ class Controller_Base
 
 	public function __construct()
 	{
-		$this->response = Witty:instance('Response');
-		$this->request = Witty:instance('Request');
+		$this->response = Witty::instance('Response');
+		$this->request = Witty::instance('Request');
 	}
 }

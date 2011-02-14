@@ -5,7 +5,7 @@
  * @dependency profiler,request,route,response
  * @author lzyy http://blog.leezhong.com
  * @homepage https://github.com/witty/app
- * @version 0.1.1
+ * @version 0.1.2
  */
 class App extends Witty_Base
 {
